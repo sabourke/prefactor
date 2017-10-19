@@ -1,0 +1,7 @@
+bin/* usr/bin
+scripts/* usr/bin
+*.parset usr/share/prefactor/parsets
+parsets/*.parset usr/share/prefactor/parsets
+skymodels usr/share/prefactor
+
+
