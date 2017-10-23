@@ -1,5 +1,6 @@
 bin/* usr/bin
-scripts/* usr/bin
+scripts/* usr/lib/prefactor/scripts
+plugins/* usr/lib/prefactor/plugins
 *.parset usr/share/prefactor/parsets
 parsets/*.parset usr/share/prefactor/parsets
 skymodels usr/share/prefactor
