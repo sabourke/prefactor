@@ -1,0 +1,28 @@
+Description: accept multiple <MSPattern>
+
+backport of this PR:
+
+https://github.com/lofar-astron/prefactor/pull/156
+
+
+--- prefactor-2.0.2.orig/scripts/losotoImporter.py
++++ prefactor-2.0.2/scripts/losotoImporter.py
+@@ -489,14 +489,16 @@ if __name__=='__main__':
+     (options, args) = opt.parse_args()
+ 
+     # Check options
+-    if len(args) != 2:
++    if len(args) < 2:
+         opt.print_help()
+         sys.exit()
+ 
+     # first argument: H5parm file name
+     hdf5File = args[0]
+     # second argument: pattern for measurement-sets
+-    inMSs = glob.glob(args[1])
++    inMSs = []
++    for entry in args[1:]:
++        inMSs.extend(glob.glob(entry))
+ 
+     # options with default values
+     instrument = options.Instrument
