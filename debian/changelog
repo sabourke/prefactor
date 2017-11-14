@@ -1,3 +1,9 @@
+prefactor (2.0.2-1kern2) xenial; urgency=medium
+
+  * Accept multiple <MSPattern>
+
+ -- KERN packaging <packaging@kernsuite.info>  Tue, 14 Nov 2017 11:37:29 +0200
+
 prefactor (2.0.2-1kern1) xenial; urgency=medium
 
   * also install plugins
