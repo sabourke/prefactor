@@ -1,0 +1,54 @@
+--- prefactor_kern/scripts/make_clean_mask.py	2017-12-08 12:55:35.191490703 +0100
++++ prefactor/scripts/make_clean_mask.py	2017-12-08 13:30:58.674737179 +0100
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/python
+ """
+ Script to make a clean mask
+ """
+@@ -15,15 +15,15 @@
+ # I copy&pasted that into this file
+ #from factor.lib.polygon import Polygon
+ 
+-# workaround for a bug / ugly behavior in matplotlib / pybdsm
++# workaround for a bug / ugly behavior in matplotlib / pybdsf
+ # (some installtaions of matplotlib.pyplot fail if there is no X-Server available
+-# which is not caught in pybdsm.)
++# which is not caught in pybdsf.)
+ try:
+     import matplotlib 
+     matplotlib.use('Agg') 
+ except (RuntimeError, ImportError):
+     pass
+-from lofar import bdsm
++import bdsf
+ 
+ class Polygon:
+     """
+@@ -560,7 +560,7 @@
+ 
+         if use_adaptive_threshold:
+             # Get an estimate of the rms
+-            img = bdsm.process_image(image_name, mean_map='zero', rms_box=rmsbox,
++            img = bdsf.process_image(image_name, mean_map='zero', rms_box=rmsbox,
+                                      thresh_pix=threshpix, thresh_isl=threshisl,
+                                      atrous_do=atrous_do, ini_method='curvature', thresh='hard',
+                                      adaptive_rms_box=adaptive_rmsbox, adaptive_thresh=adaptive_thresh,
+@@ -588,7 +588,7 @@
+             # Start with given threshold and lower it until we get at least one island
+             nisl = 0
+             while nisl == 0:
+-                img = bdsm.process_image(image_name, mean_map='zero', rms_box=rmsbox,
++                img = bdsf.process_image(image_name, mean_map='zero', rms_box=rmsbox,
+                                          thresh_pix=threshpix, thresh_isl=threshisl,
+                                          atrous_do=atrous_do, ini_method='curvature', thresh='hard',
+                                          adaptive_rms_box=adaptive_rmsbox, adaptive_thresh=adaptive_thresh,
+@@ -600,7 +600,7 @@
+                 if threshpix < 5.0:
+                     break
+         else:
+-            img = bdsm.process_image(image_name, mean_map='zero', rms_box=rmsbox,
++            img = bdsf.process_image(image_name, mean_map='zero', rms_box=rmsbox,
+                                      thresh_pix=threshpix, thresh_isl=threshisl,
+                                      atrous_do=atrous_do, ini_method='curvature', thresh='hard',
+                                      adaptive_rms_box=adaptive_rmsbox, adaptive_thresh=adaptive_thresh,

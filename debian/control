@@ -17,9 +17,15 @@ Build-Depends:
  python-lofar,
  python-casacore,
  python-pp,
+ python-pkg-resources,
+ casacore-tools,
+ casacore-dev,
  losoto,
+ lofar,
+ lofar-dev,
  lsmtool,
  rmextract,
+ wget,
  wsclean
 Standards-Version: 3.9.7
 Homepage: https://github.com/lofar-astron/prefactor
@@ -42,9 +48,15 @@ Depends:
  python-lofar,
  python-casacore,
  python-pp,
+ python-pkg-resources,
+ casacore-tools,
+ casacore-dev,
  losoto,
+ lofar,
+ lofar-dev,
  lsmtool,
  rmextract,
+ wget,
  wsclean
 Description: Pre facet calibration pipeline (Python 2)
  Parsets for the genericpipeline that do the first calibration of LOFAR data.
