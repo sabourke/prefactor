@@ -1,0 +1,36 @@
+diff -ruN prefactor.orig/pipeline.cfg prefactor.sb/pipeline.cfg
+--- prefactor.orig/pipeline.cfg	1970-01-01 01:00:00.000000000 +0100
++++ prefactor.sb/pipeline.cfg	2017-12-08 16:08:29.488020527 +0100
+@@ -0,0 +1,32 @@
++[DEFAULT]
++lofarroot = /usr
++pythonpath = /usr/lib/python2.7/dist-packages
++recipe_directories = [%(pythonpath)s/lofarpipe/recipes,/usr/lib/prefactor]
++task_files = [%(lofarroot)s/share/pipeline/tasks.cfg]
++runtime_directory = /SET/THIS/
++working_directory = /SET/THIS/./USED/FOR/DATA
++
++[layout]
++job_directory = %(runtime_directory)s/%(job_name)s
++
++[cluster]
++clusterdesc = %(lofarroot)s/share/cep2.clusterdesc
++
++[deploy]
++engine_ppath = %(pythonpath)s
++engine_lpath = %(lofarroot)s/lib
++
++[logging]
++log_file = /DESTINATION/OF/LOGFILES/log/pipeline-%(job_name)s-%(start_time)s.log
++xml_stat_file = /DESTINATION/OF/LOGFILES/log/pipeline-%(job_name)s-%(start_time)s-statistics.xml
++
++[feedback]
++# Method of providing feedback to LOFAR.
++# Valid options:
++#    messagebus    Send feedback and status using LCS/MessageBus
++#    none          Do NOT send feedback and status
++method = none
++
++[remote]
++method = local
++max_per_node = 20

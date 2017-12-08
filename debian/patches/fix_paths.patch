@@ -1,0 +1,401 @@
+diff --git a/Initial-Subtract-Deep.parset b/Initial-Subtract-Deep.parset
+index 6278b2b..6dec7a9 100644
+--- a/Initial-Subtract-Deep.parset
++++ b/Initial-Subtract-Deep.parset
+@@ -72,14 +72,14 @@
+ ! error_tolerance           =  False
+ 
+ ##### pathes to the scripts etc.
+-! wsclean_executable          = /soft/wsclean/bin/wsclean
+-! do_magic_script             = /home/wwilliams/scripts/git/wprefactor/prefactor/scripts/InitSubtract_deep_sort_and_compute.py
+-! merge_skymodels_script      = /home/wwilliams/scripts/git/wprefactor/prefactor/scripts/merge_skymodels.py
+-! make_clean_mask_script      = /home/wwilliams/scripts/git/wprefactor/prefactor/scripts/make_clean_mask.py
+-! fits_to_casa_script         = /home/wwilliams/scripts/git/wprefactor/prefactor/scripts/convert_fits_image_to_casa.py
+-! plot_subtract_images_script = /home/wwilliams/scripts/git/wprefactor/prefactor/scripts/plot_subtract_images.py
+-! casapy2bbs                  = /soft/lofar-220216/bin/casapy2bbs.py
+-! makesourcedb                = /soft/lofar-220216/bin/makesourcedb
++! wsclean_executable          = /usr/bin/wsclean
++! do_magic_script             = /usr/lib/prefactor/scripts/InitSubtract_deep_sort_and_compute.py
++! merge_skymodels_script      = /usr/lib/prefactor/scripts/merge_skymodels.py
++! make_clean_mask_script      = /usr/lib/prefactor/scripts/make_clean_mask.py
++! fits_to_casa_script         = /usr/lib/prefactor/scripts/convert_fits_image_to_casa.py
++! plot_subtract_images_script = /usr/lib/prefactor/scripts/plot_subtract_images.py
++! casapy2bbs                  = /usr/bin/casapy2bbs.py
++! makesourcedb                = /usr/bin/makesourcedb
+ 
+ 
+ ##### the Steps in this pipeline
+diff --git a/Initial-Subtract.parset b/Initial-Subtract.parset
+index 6bcb99f..1ca155b 100644
+--- a/Initial-Subtract.parset
++++ b/Initial-Subtract.parset
+@@ -67,14 +67,14 @@
+ ! error_tolerance           =  False
+ 
+ ##### pathes to the scripts etc.
+-! wsclean_executable          = /homea/htb00/htb003/local_jureca/bin/wsclean
+-! do_magic_script             = /homea/htb00/htb001/prefactor/scripts/InitSubtract_sort_and_compute.py
+-! merge_skymodels_script      = /homea/htb00/htb001/prefactor/scripts/merge_skymodels.py
+-! make_clean_mask_script      = /homea/htb00/htb001/prefactor/scripts/make_clean_mask.py
+-! fits_to_casa_script         = /homea/htb00/htb001/prefactor/scripts/convert_fits_image_to_casa.py
+-! plot_subtract_images_script = /homea/htb00/htb001/prefactor/scripts/plot_subtract_images.py
+-! casapy2bbs                  = /homea/htb00/htb003/lofar_jureca_2-15/bin/casapy2bbs.py
+-! makesourcedb                = /homea/htb00/htb003/lofar_jureca_2-15/bin/makesourcedb
++! wsclean_executable          = /usr/bin/wsclean
++! do_magic_script             = /usr/lib/prefactor/scripts/InitSubtract_sort_and_compute.py
++! merge_skymodels_script      = /usr/lib/prefactor/scripts/merge_skymodels.py
++! make_clean_mask_script      = /usr/lib/prefactor/scripts/make_clean_mask.py
++! fits_to_casa_script         = /usr/lib/prefactor/scripts/convert_fits_image_to_casa.py
++! plot_subtract_images_script = /usr/lib/prefactor/scripts/plot_subtract_images.py
++! casapy2bbs                  = /usr/bin/casapy2bbs.py
++! makesourcedb                = /usr/bin/makesourcedb
+ 
+ # the Steps in this pipeline
+ pipeline.steps = [create_ms_map, combine_mapfile, do_magic, do_magic_maps, create_parmdb_map, wsclean_high1, mask_high, mk_inspect_dir, copy_mask, wsclean_high2, plot_im_high, move_high2, fits_to_image_high, casa_to_bbs_high, make_sourcedb_high, expand_sourcedb_high, subtract_high, correct_high, regroup_map, wsclean_low1, mask_low, wsclean_low2, plot_im_low, move_low2, fits_to_image_low, casa_to_bbs_low, make_sourcedb_low, expand_sourcedb_low, subtract_low, merge, copy_skymodels, createmap_plots, move_plots]
+diff --git a/Pre-Facet-Cal.parset b/Pre-Facet-Cal.parset
+index 6d75b11..b21a110 100644
+--- a/Pre-Facet-Cal.parset
++++ b/Pre-Facet-Cal.parset
+@@ -23,12 +23,12 @@
+ ! cal_input_path       = /data/scratch/username/PathToYourCalibratorData/
+ ! cal_input_pattern    = L*.MS
+ # Path to the skymodels for the Calibrator
+-! calibrator_path_skymodel  = /cep3home/username/Pre-Facet-Cal/skymodels/
++! calibrator_path_skymodel  = /usr/share/prefactor/skymodels/
+ # where to find the target data
+ ! target_input_path    = /data/scratch/username/PathToYourTargetData/
+ ! target_input_pattern = L*.MS
+ # path to the skymodel for the phase-only calibration of the target
+-! target_skymodel      = /cep3home/username/Pre-Facet-Cal/skymodels/PleaseProvideTarget.skymodel
++! target_skymodel      = /usr/share/prefactor/skymodels/PleaseProvideTarget.skymodel
+ # download the phase-only calibration skymodel from TGSS
+ # "Force" : always download , "True" download if {{ target_skymodel }} does not exist , "False" : never download
+ ! use_tgss_target      = True
+@@ -61,27 +61,27 @@
+ 
+ ## pathes to the scripts etc.
+ # #### ToDo: get the scripts onto CEP3 and adjust the pathes here!
+-! calibrator_parset        = /homea/htb00/htb001/prefactor/Pre-Facet-Calibrator.parset
+-! target_parset            = /homea/htb00/htb001/prefactor/Pre-Facet-Target.parset
+-! calib_cal_parset         = /homea/htb00/htb001/prefactor/parsets/calibcal.parset
+-! find_skymodel_cal_auto   = /homea/htb00/htb001/prefactor/scripts/find_skymodel_cal.py
+-! ATeam_skymodel           = /homea/htb00/htb001/prefactor/skymodels/Ateam_LBA_CC.skymodel
+-! losoto_importer          = /homea/htb00/htb001/prefactor/scripts/losotoImporter.py
+-! get_ion_script           = /homea/htb00/htb001/prefactor/bin/download_IONEX.py
+-! fitclock_script          = /homea/htb00/htb001/prefactor/scripts/fit_clocktec_initialguess_losoto.py
+-! fitamps_script           = /homea/htb00/htb001/prefactor/scripts/amplitudes_losoto_3.py
+-! plotsols_script          = /homea/htb00/htb001/prefactor/scripts/examine_npys.py
+-! fit_XYoffset_script      = /homea/htb00/htb001/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
+-! transfer_script          = /homea/htb00/htb001/prefactor/scripts/transfer_gains_RMextract.py
+-! ATeam_Clipper            = /homea/htb00/htb001/prefactor/scripts/Ateamclipper.py
+-! get_tgss_skymodel_script = /homea/htb00/htb001/prefactor/scripts/download_tgss_skymodel_target.py
+-! sortmap_script           = /homea/htb00/htb001/prefactor/scripts/sort_times_into_freqGroups.py
+-! check_flagged_script     = /homea/htb00/htb001/prefactor/scripts/check_unflagged_fraction.py
+-! structurefunction_script = /homea/htb00/htb001/prefactor/scripts/getStructure_from_phases.py
+-! plotphases_script        = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
+-! losoto_executable        = /opt/cep/losoto/current/bin/losoto
+-! flagging_strategy        = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/share/rfistrategies/HBAdefault
+-! makesourcedb             = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/bin/makesourcedb
++! calibrator_parset        = /usr/share/prefactor/parsets/Pre-Facet-Calibrator.parset
++! target_parset            = /usr/share/prefactor/parsets/Pre-Facet-Target.parset
++! calib_cal_parset         = /usr/share/prefactor/parsets/calibcal.parset
++! find_skymodel_cal_auto   = /usr/lib/prefactor/scripts/find_skymodel_cal.py
++! ATeam_skymodel           = /usr/share/prefactor/skymodels/Ateam_LBA_CC.skymodel
++! losoto_importer          = /usr/lib/prefactor/scripts/losotoImporter.py
++! get_ion_script           = /usr/bin/download_IONEX.py
++! fitclock_script          = /usr/lib/prefactor/scripts/fit_clocktec_initialguess_losoto.py
++! fitamps_script           = /usr/lib/prefactor/scripts/amplitudes_losoto_3.py
++! plotsols_script          = /usr/lib/prefactor/scripts/examine_npys.py
++! fit_XYoffset_script      = /usr/lib/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
++! transfer_script          = /usr/lib/prefactor/scripts/transfer_gains_RMextract.py
++! ATeam_Clipper            = /usr/lib/prefactor/scripts/Ateamclipper.py
++! get_tgss_skymodel_script = /usr/lib/prefactor/scripts/download_tgss_skymodel_target.py
++! sortmap_script           = /usr/lib/prefactor/scripts/sort_times_into_freqGroups.py
++! check_flagged_script     = /usr/lib/prefactor/scripts/check_unflagged_fraction.py
++! structurefunction_script = /usr/lib/prefactor/scripts/getStructure_from_phases.py
++! plotphases_script        = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
++! losoto_executable        = /usr/bin/losoto
++! flagging_strategy        = /usr/share/rfistrategies/HBAdefault
++! makesourcedb             = /usr/bin/makesourcedb
+ 
+ 
+ # number of processes to use per step per node
+diff --git a/Pre-Facet-Calibrator-RawCombine.parset b/Pre-Facet-Calibrator-RawCombine.parset
+index f075ba2..0055a50 100644
+--- a/Pre-Facet-Calibrator-RawCombine.parset
++++ b/Pre-Facet-Calibrator-RawCombine.parset
+@@ -19,7 +19,7 @@
+ # How many subbands shall we concatenate into a group
+ ! num_SBs_per_group    = 10
+ # skymodel for the calibrator
+-! calibrator_skymodel  = /cep3home/username/Pre-Facet-Cal/skymodels/PleaseProvideCalibrator.skymodel
++! calibrator_skymodel  = /usr/share/prefactor/skymodels/PleaseProvideCalibrator.skymodel
+ # where to put the inspection plots generated by the pipeline
+ ! inspection_directory = /media/scratch/test/username/WhereYouWantInspectionPlotsEtc/
+ # where to put the files with the calibration values that are to be transferred to the target
+@@ -32,15 +32,15 @@
+ 
+ # pathes to the scripts etc.
+ # #### ToDo: get the scripts onto CEP3 and adjust the pathes here!
+-! sortmap_script       = /homea/htb00/htb001/prefactor/scripts/sort_times_into_freqGroups.py
+-! calib_cal_parset     = /homea/htb00/htb001/prefactor/parsets/calibcal.parset
+-! losoto_importer      = /homea/htb00/htb001/prefactor/scripts/losotoImporter.py
+-! fitclock_script      = /homea/htb00/htb001/prefactor/scripts/fit_clocktec_initialguess_losoto.py
+-! fitamps_script       = /homea/htb00/htb001/prefactor/scripts/amplitudes_losoto_3.py
+-! plotsols_script      = /homea/htb00/htb001/prefactor/scripts/examine_npys.py
+-! fit_XYoffset_script  = /homea/htb00/htb001/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
+-! plotphases_script    = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
+-! losoto_executable    = /homea/htb00/htb003/local_jureca/bin/losoto
++! sortmap_script       = /usr/lib/prefactor/scripts/sort_times_into_freqGroups.py
++! calib_cal_parset     = /usr/share/prefactor/parsets/calibcal.parset
++! losoto_importer      = /usr/lib/prefactor/scripts/losotoImporter.py
++! fitclock_script      = /usr/lib/prefactor/scripts/fit_clocktec_initialguess_losoto.py
++! fitamps_script       = /usr/lib/prefactor/scripts/amplitudes_losoto_3.py
++! plotsols_script      = /usr/lib/prefactor/scripts/examine_npys.py
++! fit_XYoffset_script  = /usr/lib/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
++! plotphases_script    = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
++! losoto_executable    = /usr/bin/losoto
+ 
+ # number of processes to use per step per node
+ ! num_proc_per_node        = 24
+diff --git a/Pre-Facet-Calibrator-RawSingle.parset b/Pre-Facet-Calibrator-RawSingle.parset
+index 83ed406..b5613e6 100644
+--- a/Pre-Facet-Calibrator-RawSingle.parset
++++ b/Pre-Facet-Calibrator-RawSingle.parset
+@@ -15,7 +15,7 @@
+ ! cal_input_path       = /data/scratch/username/PathToYourCalibratorData/
+ ! cal_input_pattern    = L*.MS
+ # skymodel for the calibrator
+-! calibrator_skymodel  = /cep3home/username/Pre-Facet-Cal/skymodels/PleaseProvideCalibrator.skymodel
++! calibrator_skymodel  = /usr/share/prefactor/skymodels/PleaseProvideCalibrator.skymodel
+ # where to put the inspection plots generated by the pipeline
+ ! inspection_directory = /media/scratch/test/username/WhereYouWantInspectionPlotsEtc/
+ # where to put the files with the calibration values that are to be transferred to the target
+@@ -28,14 +28,14 @@
+ 
+ # pathes to the scripts etc.
+ # #### ToDo: get the scripts onto CEP3 and adjust the pathes here!
+-! calib_cal_parset     = /homea/htb00/htb001/prefactor/parsets/calibcal.parset
+-! losoto_importer      = /homea/htb00/htb001/prefactor/scripts/losotoImporter.py
+-! fitclock_script      = /homea/htb00/htb001/prefactor/scripts/fit_clocktec_initialguess_losoto.py
+-! fitamps_script       = /homea/htb00/htb001/prefactor/scripts/amplitudes_losoto_3.py
+-! plotsols_script      = /homea/htb00/htb001/prefactor/scripts/examine_npys.py
+-! fit_XYoffset_script  = /homea/htb00/htb001/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
+-! plotphases_script    = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
+-! losoto_executable    = /homea/htb00/htb003/local_jureca/bin/losoto
++! calib_cal_parset     = /usr/share/prefactor/parsets/calibcal.parset
++! losoto_importer      = /usr/lib/prefactor/scripts/losotoImporter.py
++! fitclock_script      = /usr/lib/prefactor/scripts/fit_clocktec_initialguess_losoto.py
++! fitamps_script       = /usr/lib/prefactor/scripts/amplitudes_losoto_3.py
++! plotsols_script      = /usr/lib/prefactor/scripts/examine_npys.py
++! fit_XYoffset_script  = /usr/lib/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
++! plotphases_script    = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
++! losoto_executable    = /usr/bin/losoto
+ 
+ # number of processes to use per step per node
+ ! num_proc_per_node        = 24
+diff --git a/Pre-Facet-Calibrator.parset b/Pre-Facet-Calibrator.parset
+index 020e8e3..eeecfe3 100644
+--- a/Pre-Facet-Calibrator.parset
++++ b/Pre-Facet-Calibrator.parset
+@@ -15,7 +15,7 @@
+ ! cal_input_pattern    = L*.MS
+ # Either: the path to the skymodel for the calibrator (ASCII-file)
+ # or: the path to a directory with the skymodels for the different calibrators
+-! calibrator_path_skymodel = /cep3home/username/Pre-Facet-Cal/skymodels/
++! calibrator_path_skymodel = /usr/share/prefactor/skymodels/
+ # where to put the inspection plots generated by the pipeline
+ ! inspection_directory     = /media/scratch/test/username/WhereYouWantInspectionPlotsEtc/
+ # where to put the files with the calibration values that are to be transferred to the target
+@@ -28,15 +28,15 @@
+ 
+ # pathes to the scripts etc.
+ # #### ToDo: get the scripts onto CEP3 and adjust the pathes here!
+-! calib_cal_parset          = /homea/htb00/htb001/prefactor/parsets/calibcal.parset
+-! find_skymodel_cal_auto    = /homea/htb00/htb001/prefactor/scripts/find_skymodel_cal.py
+-! losoto_importer           = /homea/htb00/htb001/prefactor/scripts/losotoImporter.py
+-! fitclock_script           = /homea/htb00/htb001/prefactor/scripts/fit_clocktec_initialguess_losoto.py
+-! fitamps_script            = /homea/htb00/htb001/prefactor/scripts/amplitudes_losoto_3.py
+-! plotsols_script           = /homea/htb00/htb001/prefactor/scripts/examine_npys.py
+-! fit_XYoffset_script       = /homea/htb00/htb001/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
+-! plotphases_script         = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
+-! losoto_executable         = /homea/htb00/htb003/local_jureca/bin/losoto
++! calib_cal_parset          = /usr/share/prefactor/parsets/calibcal.parset
++! find_skymodel_cal_auto    = /usr/lib/prefactor/scripts/find_skymodel_cal.py
++! losoto_importer           = /usr/lib/prefactor/scripts/losotoImporter.py
++! fitclock_script           = /usr/lib/prefactor/scripts/fit_clocktec_initialguess_losoto.py
++! fitamps_script            = /usr/lib/prefactor/scripts/amplitudes_losoto_3.py
++! plotsols_script           = /usr/lib/prefactor/scripts/examine_npys.py
++! fit_XYoffset_script       = /usr/lib/prefactor/scripts/find_cal_global_phaseoffset_losoto.py
++! plotphases_script         = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
++! losoto_executable         = /usr/bin/losoto
+ 
+ # number of processes to use per step per node
+ ! num_proc_per_node        = 24
+diff --git a/Pre-Facet-Target-RawCombine.parset b/Pre-Facet-Target-RawCombine.parset
+index 1460ec1..758b210 100644
+--- a/Pre-Facet-Target-RawCombine.parset
++++ b/Pre-Facet-Target-RawCombine.parset
+@@ -22,7 +22,7 @@
+ ! target_input_pattern = L*.MS
+ # path to the skymodel for the phase-only calibration of the target
+ # (Existing file or path (incl. filename) where TGSS model is stored.)
+-! target_skymodel      = /cep3home/username/Pre-Facet-Cal/skymodels/PleaseProvideTarget.skymodel
++! target_skymodel      = /usr/share/prefactor/skymodels/PleaseProvideTarget.skymodel
+ # download the phase-only calibration skymodel from TGSS
+ # "Force" : always download , "True" download if {{ target_skymodel }} does not exist , "False" : never download
+ ! use_tgss_target      = True
+@@ -55,19 +55,19 @@
+ 
+ # pathes to the scripts etc.
+ # #### ToDo: get the scripts onto CEP3 and adjust the pathes here!
+-! ATeam_skymodel           = /homea/htb00/htb001/prefactor/skymodels/Ateam_LBA_CC.skymodel
+-! losoto_importer          = /homea/htb00/htb001/prefactor/scripts/losotoImporter.py
+-! get_ion_script           = /homea/htb00/htb001/prefactor/bin/download_IONEX.py
+-! transfer_script          = /homea/htb00/htb001/prefactor/scripts/transfer_gains_RMextract.py
+-! ATeam_Clipper            = /homea/htb00/htb001/prefactor/scripts/Ateamclipper.py
+-! get_tgss_skymodel_script = /homea/htb00/htb001/prefactor/scripts/download_tgss_skymodel_target.py
+-! sortmap_script           = /homea/htb00/htb001/prefactor/scripts/sort_times_into_freqGroups.py
+-! check_flagged_script     = /homea/htb00/htb001/prefactor/scripts/check_unflagged_fraction.py
+-! structurefunction_script = /homea/htb00/htb001/prefactor/scripts/getStructure_from_phases.py
+-! plotphases_script        = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
+-! losoto_executable        = /homea/htb00/htb003/local_jureca/bin/losoto
+-! makesourcedb             = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/bin/makesourcedb
+-! flagging_strategy        = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/share/rfistrategies/HBAdefault
++! ATeam_skymodel           = /usr/share/prefactor/skymodels/Ateam_LBA_CC.skymodel
++! losoto_importer          = /usr/lib/prefactor/scripts/losotoImporter.py
++! get_ion_script           = /usr/bin/download_IONEX.py
++! transfer_script          = /usr/lib/prefactor/scripts/transfer_gains_RMextract.py
++! ATeam_Clipper            = /usr/lib/prefactor/scripts/Ateamclipper.py
++! get_tgss_skymodel_script = /usr/lib/prefactor/scripts/download_tgss_skymodel_target.py
++! sortmap_script           = /usr/lib/prefactor/scripts/sort_times_into_freqGroups.py
++! check_flagged_script     = /usr/lib/prefactor/scripts/check_unflagged_fraction.py
++! structurefunction_script = /usr/lib/prefactor/scripts/getStructure_from_phases.py
++! plotphases_script        = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
++! losoto_executable        = /usr/bin/losoto
++! makesourcedb             = /usr/bin/makesourcedb
++! flagging_strategy        = /usr/share/rfistrategies/HBAdefault
+ 
+ # number of processes to use per step per node
+ ! num_proc_per_node        = 24
+diff --git a/Pre-Facet-Target-RawSingle.parset b/Pre-Facet-Target-RawSingle.parset
+index 6ec001d..2c57609 100644
+--- a/Pre-Facet-Target-RawSingle.parset
++++ b/Pre-Facet-Target-RawSingle.parset
+@@ -22,7 +22,7 @@
+ ! target_input_pattern = L*.MS
+ # path to the skymodel for the phase-only calibration of the target
+ # (Existing file or path (incl. filename) where TGSS model is stored.)
+-! target_skymodel      = /cep3home/username/Pre-Facet-Cal/skymodels/PleaseProvideTarget.skymodel
++! target_skymodel      = /usr/share/prefactor/skymodels/PleaseProvideTarget.skymodel
+ # download the phase-only calibration skymodel from TGSS
+ # "Force" : always download , "True" download if {{ target_skymodel }} does not exist , "False" : never download
+ ! use_tgss_target      = True
+@@ -55,19 +55,19 @@
+ 
+ # pathes to the scripts etc.
+ # #### ToDo: get the scripts onto CEP3 and adjust the pathes here!
+-! ATeam_skymodel           = /homea/htb00/htb001/prefactor/skymodels/Ateam_LBA_CC.skymodel
+-! losoto_importer          = /homea/htb00/htb001/prefactor/scripts/losotoImporter.py
+-! get_ion_script           = /homea/htb00/htb001/prefactor/bin/download_IONEX.py
+-! transfer_script          = /homea/htb00/htb001/prefactor/scripts/transfer_gains_RMextract.py
+-! ATeam_Clipper            = /homea/htb00/htb001/prefactor/scripts/Ateamclipper.py
+-! get_tgss_skymodel_script = /homea/htb00/htb001/prefactor/scripts/download_tgss_skymodel_target.py
+-! sortmap_script           = /homea/htb00/htb001/prefactor/scripts/sort_times_into_freqGroups.py
+-! check_flagged_script     = /homea/htb00/htb001/prefactor/scripts/check_unflagged_fraction.py
+-! structurefunction_script = /homea/htb00/htb001/prefactor/scripts/getStructure_from_phases.py
+-! plotphases_script        = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
+-! losoto_executable        = /homea/htb00/htb003/local_jureca/bin/losoto
+-! makesourcedb             = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/bin/makesourcedb
+-! flagging_strategy        = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/share/rfistrategies/HBAdefault
++! ATeam_skymodel           = /usr/share/prefactor/skymodels/Ateam_LBA_CC.skymodel
++! losoto_importer          = /usr/lib/prefactor/scripts/losotoImporter.py
++! get_ion_script           = /usr/bin/download_IONEX.py
++! transfer_script          = /usr/lib/prefactor/scripts/transfer_gains_RMextract.py
++! ATeam_Clipper            = /usr/lib/prefactor/scripts/Ateamclipper.py
++! get_tgss_skymodel_script = /usr/lib/prefactor/scripts/download_tgss_skymodel_target.py
++! sortmap_script           = /usr/lib/prefactor/scripts/sort_times_into_freqGroups.py
++! check_flagged_script     = /usr/lib/prefactor/scripts/check_unflagged_fraction.py
++! structurefunction_script = /usr/lib/prefactor/scripts/getStructure_from_phases.py
++! plotphases_script        = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
++! losoto_executable        = /usr/bin/losoto
++! makesourcedb             = /usr/bin/makesourcedb
++! flagging_strategy        = /usr/share/rfistrategies/HBAdefault
+ 
+ # number of processes to use per step per node
+ ! num_proc_per_node        = 24
+diff --git a/Pre-Facet-Target.parset b/Pre-Facet-Target.parset
+index f4f695e..a4a3dfe 100644
+--- a/Pre-Facet-Target.parset
++++ b/Pre-Facet-Target.parset
+@@ -19,7 +19,7 @@
+ ! target_input_pattern = L*.MS
+ # path to the skymodel for the phase-only calibration of the target
+ # (Existing file or path (incl. filename) where TGSS model is stored.)
+-! target_skymodel      = /cep3home/username/Pre-Facet-Cal/skymodels/PleaseProvideTarget.skymodel
++! target_skymodel      = /usr/share/prefactor/skymodels/PleaseProvideTarget.skymodel
+ # download the phase-only calibration skymodel from TGSS
+ # "Force" : always download , "True" download if {{ target_skymodel }} does not exist , "False" : never download
+ ! use_tgss_target      = True
+@@ -56,19 +56,19 @@
+ 
+ # pathes to the scripts etc.
+ # #### ToDo: get the scripts onto CEP3 and adjust the pathes here!
+-! ATeam_skymodel           = /homea/htb00/htb001/prefactor/skymodels/Ateam_LBA_CC.skymodel
+-! losoto_importer          = /homea/htb00/htb001/prefactor/scripts/losotoImporter.py
+-! get_ion_script           = /homea/htb00/htb001/prefactor/bin/download_IONEX.py
+-! transfer_script          = /homea/htb00/htb001/prefactor/scripts/transfer_gains_RMextract.py
+-! ATeam_Clipper            = /homea/htb00/htb001/prefactor/scripts/Ateamclipper.py
+-! get_tgss_skymodel_script = /homea/htb00/htb001/prefactor/scripts/download_tgss_skymodel_target.py
+-! sortmap_script           = /homea/htb00/htb001/prefactor/scripts/sort_times_into_freqGroups.py
+-! check_flagged_script     = /homea/htb00/htb001/prefactor/scripts/check_unflagged_fraction.py
+-! structurefunction_script = /homea/htb00/htb001/prefactor/scripts/getStructure_from_phases.py
+-! plotphases_script        = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
+-! losoto_executable        = /homea/htb00/htb003/local_jureca/bin/losoto
+-! makesourcedb             = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/bin/makesourcedb
+-! flagging_strategy        = /homea/htb00/htb003/lofar_jureca_2.17_stack2016a/share/rfistrategies/HBAdefault
++! ATeam_skymodel           = /usr/share/prefactor/skymodels/Ateam_LBA_CC.skymodel
++! losoto_importer          = /usr/lib/prefactor/scripts/losotoImporter.py
++! get_ion_script           = /usr/bin/download_IONEX.py
++! transfer_script          = /usr/lib/prefactor/scripts/transfer_gains_RMextract.py
++! ATeam_Clipper            = /usr/lib/prefactor/scripts/Ateamclipper.py
++! get_tgss_skymodel_script = /usr/lib/prefactor/scripts/download_tgss_skymodel_target.py
++! sortmap_script           = /usr/lib/prefactor/scripts/sort_times_into_freqGroups.py
++! check_flagged_script     = /usr/lib/prefactor/scripts/check_unflagged_fraction.py
++! structurefunction_script = /usr/lib/prefactor/scripts/getStructure_from_phases.py
++! plotphases_script        = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
++! losoto_executable        = /usr/bin/losoto
++! makesourcedb             = /usr/bin/makesourcedb
++! flagging_strategy        = /usr/share/rfistrategies/HBAdefault
+ 
+ # number of processes to use per step per node
+ ! num_proc_per_node        = 24
+diff --git a/Simple-Selfcal.parset b/Simple-Selfcal.parset
+index c4a4a9a..abf5f25 100644
+--- a/Simple-Selfcal.parset
++++ b/Simple-Selfcal.parset
+@@ -33,15 +33,15 @@
+ ! error_tolerance           =  False
+ 
+ ##### pathes to the scripts etc.
+-! wsclean_executable     = /homea/htb00/htb003/local_jureca/bin/wsclean
+-! do_magic_script        = /homea/htb00/htb001/prefactor/scripts/InitSubtract_sort_and_compute.py
+-! make_clean_mask_script = /homea/htb00/htb001/prefactor/scripts/make_clean_mask.py
+-! fits_to_casa_script    = /homea/htb00/htb001/prefactor/scripts/convert_fits_image_to_casa.py
+-! casapy2bbs             = /homea/htb00/htb003/lofar_jureca_2-15/bin/casapy2bbs.py
+-! makesourcedb           = /homea/htb00/htb003/lofar_jureca_2-15/bin/makesourcedb
+-! gsm_cal_parset         = /homea/htb00/htb001/prefactor/parsets/gsmcal.parset
+-! dummy_skymodel         = /homea/htb00/htb001/prefactor/skymodels/3c295-SH.skymodel
+-! plotphases_script      = /homea/htb00/htb001/prefactor/scripts/plot_solutions_all_stations.py
++! wsclean_executable     = /usr/bin/wsclean
++! do_magic_script        = /usr/lib/prefactor/scripts/InitSubtract_sort_and_compute.py
++! make_clean_mask_script = /usr/lib/prefactor/scripts/make_clean_mask.py
++! fits_to_casa_script    = /usr/lib/prefactor/scripts/convert_fits_image_to_casa.py
++! casapy2bbs             = /usr/bin/casapy2bbs.py
++! makesourcedb           = /usr/bin/makesourcedb
++! gsm_cal_parset         = /usr/share/prefactor/parsets/gsmcal.parset
++! dummy_skymodel         = /usr/share/prefactor/skymodels/3c295-SH.skymodel
++! plotphases_script      = /usr/lib/prefactor/scripts/plot_solutions_all_stations.py
+ 
+ 
+ # the Steps in this pipeline
