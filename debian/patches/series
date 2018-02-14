@@ -1,3 +1,5 @@
 multiple_mspattern
 bdsm_bdsf.patch
 init_subtract_wsclean2.5.patch
+fix_paths.patch
+default_config.patch
