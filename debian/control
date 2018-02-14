@@ -6,27 +6,7 @@ Build-Depends:
  debhelper (>=9),
  dh-python,
  python-all (>= 2.6.6-3~),
- python-setuptools,
- python-matplotlib,
- python-aplpy,
- python-astropy,
- python-numpy,
- python-scipy,
- python-pyfits,
- python-progressbar,
- python-lofar,
- python-casacore,
- python-pp,
- python-pkg-resources,
- casacore-tools,
- casacore-dev,
- losoto,
- lofar,
- lofar-dev,
- lsmtool,
- rmextract,
- wget,
- wsclean
+ python-setuptools
 Standards-Version: 3.9.7
 Homepage: https://github.com/lofar-astron/prefactor
 X-Python-Version: >= 2.6
